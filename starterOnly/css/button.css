@@ -1,0 +1,36 @@
+.btn {
+  background: #fe142f;
+  color: #fff;
+  border-radius: 7px;
+  cursor: pointer;
+  border: 0;
+  text-transform: capitalize;
+}
+.btn:hover {
+  background: #3876ac;
+}
+.btn-signup {
+  width: clamp(155px, 20vw, 200px);
+  height: 55px;
+  font-size: clamp(1rem, 0.8789rem + 0.4678vw, 1.5rem);
+}
+
+.btn-signup--1 {
+  width: clamp(155px, 34vw, 200px);
+  height: 45px;
+  margin: 32px auto 10px;
+}
+
+.btn-submit {
+  width: clamp(141px, 20vw, 182px);
+  height: 40px;
+  display: block;
+  margin: 0 auto;
+  text-transform: unset;
+  /* font-size: 1rem; */
+  /* padding: 6px 0 6px; */
+}
+
+.hero-section > .btn-signup {
+  display: none;
+}
