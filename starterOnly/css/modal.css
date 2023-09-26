@@ -45,9 +45,9 @@ main {
   background: #3876ac;
 }
 
-.smFont {
-  /* font-size: 16px; */
-}
+/* .smFont { */
+/* font-size: 16px; */
+/* } */
 
 .bground {
   display: none;
@@ -105,7 +105,7 @@ input {
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.5em;
+  font-size: 0.7em;
   color: #e54858;
   display: block;
   margin-top: 7px;
@@ -127,6 +127,12 @@ input[data-error]::after {
     font-size: 0.5em;
     color: red;
 } */
+fieldset {
+  border: 0;
+}
+legend {
+  margin-bottom: 10px;
+}
 .checkbox-label,
 .checkbox2-label {
   position: relative;
