@@ -47,13 +47,10 @@
     padding: 12px 12px;
   }
 }
-@media screen and (max-width: 840px) {
+
+@media screen and (max-width: 800px) {
   .responsive.topnav .nav-list li {
     margin-bottom: 25px;
-  }
-
-  .topnav {
-    margin-bottom: 30px;
   }
   .topnav .nav-icon.active {
     display: inline;
@@ -65,15 +62,7 @@
   .responsive .nav-list {
     display: block;
   }
-
-  .topnav a {
-    padding: 12px 7px;
-  }
-}
-
-@media screen and (max-width: 800px) {
   .topnav {
-    gap: 25px;
     margin-bottom: 0px;
   }
   .hero-section {
@@ -127,6 +116,11 @@
 @media screen and (max-width: 705px) {
   .hero-text {
     width: unset;
+  }
+  .thx-text {
+    font-size: 2.25rem;
+
+    margin: 230px 0;
   }
   .btn-submit {
     height: 30px;

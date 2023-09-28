@@ -25,10 +25,13 @@
   width: clamp(141px, 20vw, 182px);
   height: 40px;
   display: block;
-  margin: 0 auto;
+  margin: 20px auto 0px;
   text-transform: unset;
   /* font-size: 1rem; */
   /* padding: 6px 0 6px; */
+}
+.btn-submit:focus {
+  outline: #fff 2px solid;
 }
 
 .hero-section > .btn-signup {

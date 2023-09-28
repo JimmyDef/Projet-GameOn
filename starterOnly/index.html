@@ -15,11 +15,12 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans"
       rel="stylesheet" />
   </head>
+
   <body>
     <header>
       <div class="topnav" id="myTopnav">
         <div class="header-logo">
-          <img alt="logo" src="Logo.png" />
+          <img alt="logo GameOn" src="Logo.png" />
         </div>
         <nav class="main-navbar">
           <ul class="nav-list">
@@ -59,14 +60,12 @@
         <div class="hero-img">
           <img src="./bg_img.jpg" alt="img" />
         </div>
-        <button class="btn-signup btn btn-signup--1" id="test1">
-          je m'inscris
-        </button>
+        <button class="btn-signup btn btn-signup--1">je m'inscris</button>
       </div>
 
-      <div class="bground">
+      <div class="bground" id="modal">
         <div class="content">
-          <span class="close"></span>
+          <span class="close" id="close-form"></span>
           <div class="modal-body">
             <form name="reserve" action="index.html" method="get">
               <div
@@ -98,7 +97,6 @@
                 data-error-visible>
                 <label for="email">E-mail</label><br />
                 <input
-                  required
                   class="text-control"
                   type="email"
                   id="email"
@@ -106,15 +104,16 @@
               </div>
               <div
                 class="formData"
-                data-error="Vous devez entrer une  date de naissance valide."
+                data-error="Vous devez entrer une  date de naissance valide et avoir plus de 13ans."
                 data-error-visible>
                 <label for="birthdate">Date de naissance</label><br />
                 <input
-                  required
                   class="text-control"
                   type="date"
                   id="birthdate"
-                  name="birthdate" /><br />
+                  name="birthdate"
+                  min="1940-01-01"
+                  max="2010-12-31" /><br />
               </div>
               <div
                 class="formData"
@@ -230,6 +229,17 @@
                 value="C'est parti"
                 id="submitBtn" />
             </form>
+          </div>
+        </div>
+      </div>
+      <div class="bground" id="thanking">
+        <div class="content">
+          <span class="close close-thanking"></span>
+          <div class="modal-body">
+            <div class="thankingDiv">
+              <p class="thanking-text">Merci pour votre inscription</p>
+              <button class="btn-submit btn close-thanking">Fermer</button>
+            </div>
           </div>
         </div>
       </div>

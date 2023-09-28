@@ -1,17 +1,18 @@
 //-----------------------------------------------------
 // DOM Elements
-
-const $modalbg = document.querySelector(".bground");
-const $modalBtn = document.querySelectorAll(".btn-signup");
-const $formData = document.querySelectorAll(".formData");
-const $closeIcon = document.querySelector(".close");
-const $form = document.querySelector("form");
 const $burgerIcons = document.querySelectorAll(".nav-icon");
+const $modal = document.getElementById("modal");
+const $closeForm = document.getElementById("close-form");
+const $modalBtn = document.querySelectorAll(".btn-signup");
+const $modalThanking = document.getElementById("thanking");
+const $closeThanking = document.querySelectorAll(".close-thanking");
+const $form = document.querySelector("form");
+const $formData = document.querySelectorAll(".formData");
 const $radioButtons = document.querySelectorAll("input[name='location']");
 const $submitBtn = document.getElementById("submitBtn");
 
 //-----------------------------------------------------
-// launch or close burger menu
+// Display burger menu
 
 $burgerIcons.forEach((elt) => {
   elt.addEventListener("click", function () {
@@ -23,26 +24,36 @@ $burgerIcons.forEach((elt) => {
 });
 
 //-----------------------------------------------------
-// launch modal form
+// display modal form
 
 const launchModal = () => {
-  $modalbg.style.display = "block";
+  $modal.style.display = "block";
+};
+const closeModale = () => {
+  $modal.style.display = "none";
 };
 
-//-----------------------------------------------------
-// Close modal form
-const closeModale = () => {
-  $modalbg.style.display = "none";
-};
 $modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-$closeIcon.addEventListener("click", closeModale);
+$closeForm.addEventListener("click", closeModale);
+
+//-----------------------------------------------------
+// display thanking modal
+const launchThanking = () => {
+  $modalThanking.style.display = "block";
+};
+const closeThanking = () => {
+  $modalThanking.style.display = "none";
+};
+$closeThanking.forEach((btn) => btn.addEventListener("click", closeThanking));
 
 //-----------------------------------------------------
 // RegExp
 const emailRegEx = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
 const nameRegEx = new RegExp(/^[a-zA-ZÀ-ÖØ-öø-ÿ-' ]{2,}$/i);
 const tournamentRegEx = new RegExp(/^(0|[1-9][0-9]?)$/);
-const birthdateRegEx = new RegExp(/^\d{4}-\d{2}-\d{2}$/);
+const birthdateRegEx = new RegExp(
+  /^(19[0-9]{2}|20[0-1][0-9]|2020)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/
+);
 
 //-----------------------------------------------------
 // Function display error msg
@@ -50,6 +61,43 @@ const birthdateRegEx = new RegExp(/^\d{4}-\d{2}-\d{2}$/);
 const InputErrorHandler = (input, regEx) => {
   const $formData = input.closest("div.formData");
   if (regEx.test(input.value)) {
+    $formData.setAttribute("data-error-visible", "");
+    return true;
+  }
+  $formData.setAttribute("data-error-visible", "true");
+};
+
+//-----------------------------------------------------
+// Function verification age over 13
+//-----------------------------------------------------
+
+function isOver13(birthDate) {
+  const todaysDate = new Date();
+  const yearNow = todaysDate.getFullYear();
+  const monthNow = todaysDate.getMonth() + 1;
+  const dayNow = todaysDate.getDate();
+
+  const [birthYear, birthMonth, birthDay] = birthDate.split("-").map(Number);
+
+  let age = yearNow - birthYear;
+
+  // Has the person's birthday already passed this year?
+  if (monthNow < birthMonth || (monthNow === birthMonth && dayNow < birthDay)) {
+    age--;
+  }
+  // is the person over 13 ? true / false
+  return age >= 13;
+}
+//-----------------------------------------------------
+// Function to check  birthdate
+//-----------------------------------------------------
+const isBirthdateValid = () => {
+  const $inputBirthdate = $form.birthdate;
+  const $formData = $inputBirthdate.closest("div.formData");
+  if (
+    birthdateRegEx.test($inputBirthdate.value) &&
+    isOver13($inputBirthdate.value)
+  ) {
     $formData.setAttribute("data-error-visible", "");
     return true;
   }
@@ -66,19 +114,19 @@ const isLocationChecked = () => {
     const $formData = button.closest("div.formData");
     if (button.checked) {
       tournamentLocation = button.value;
+
       $formData.setAttribute("data-error-visible", "");
       break;
     }
     $formData.setAttribute("data-error-visible", "true");
   }
+  if (tournamentLocation !== undefined) {
+    return true;
+  }
 };
 
-$radioButtons.forEach((btn) => {
-  btn.addEventListener("change", isLocationChecked);
-});
-
 //-----------------------------------------------------
-// AddEventListener list
+// AddEventListener listener after focus lost
 //-----------------------------------------------------
 $form.first.addEventListener("change", function () {
   InputErrorHandler(this, nameRegEx);
@@ -88,9 +136,6 @@ $form.last.addEventListener("change", function () {
 });
 $form.email.addEventListener("change", function () {
   InputErrorHandler(this, emailRegEx);
-});
-$form.birthdate.addEventListener("change", function () {
-  InputErrorHandler(this, birthdateRegEx);
 });
 $form.quantity.addEventListener("change", function () {
   InputErrorHandler(this, tournamentRegEx);
@@ -110,31 +155,33 @@ const isCheckbox1Checked = () => {
 };
 
 //-----------------------------------------------------
-// Submit verification
+// Submit verifications
 //-----------------------------------------------------
 
 $form.addEventListener("submit", function (e) {
   $submitBtn.disabled = true;
-  // e.preventDefault();
 });
 $submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
   InputErrorHandler($form.first, nameRegEx);
   InputErrorHandler($form.last, nameRegEx);
   InputErrorHandler($form.email, emailRegEx);
-  InputErrorHandler($form.birthdate, birthdateRegEx);
+  isBirthdateValid();
   InputErrorHandler($form.quantity, tournamentRegEx);
   isCheckbox1Checked();
+  isLocationChecked();
   if (
     InputErrorHandler($form.first, nameRegEx) &&
     InputErrorHandler($form.last, nameRegEx) &&
     InputErrorHandler($form.email, emailRegEx) &&
-    InputErrorHandler($form.birthdate, birthdateRegEx) &&
+    isBirthdateValid() &&
     InputErrorHandler($form.quantity, tournamentRegEx) &&
-    isCheckbox1Checked()
+    isCheckbox1Checked() &&
+    isLocationChecked()
   ) {
     $form.reset();
+    tournamentLocation = undefined;
     closeModale();
-    console.log("OK");
+    launchThanking();
   }
 });
