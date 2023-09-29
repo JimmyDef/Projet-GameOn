@@ -31,12 +31,14 @@ header {
   transform: scale(1.15);
 }
 .nav-list {
+  position: relative;
   display: flex;
   list-style-type: none;
   font-size: 1.125rem;
 }
 .nav-list li {
   list-style-type: none;
+  position: relative;
 }
 
 .topnav a {
@@ -46,11 +48,13 @@ header {
   text-decoration: none;
   font-family: Roboto, sans-serif;
   font-weight: 600;
+  display: block;
+  transition: color 400ms;
 }
 
 .topnav a:hover {
-  background-color: #ff0000;
-  color: #ffffff;
+  background-color: rgba(134, 134, 134, 0.1);
+  color: #ff0000;
   border-radius: 15px;
 }
 
@@ -60,4 +64,16 @@ header {
   border-radius: 8px;
   text-decoration: underline 1px;
   text-underline-offset: 6px;
+  display: inline-block;
+}
+
+@keyframes menu-appears {
+  0% {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

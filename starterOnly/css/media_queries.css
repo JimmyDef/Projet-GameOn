@@ -50,8 +50,22 @@
 
 @media screen and (max-width: 800px) {
   .responsive.topnav .nav-list li {
-    margin-bottom: 25px;
+    margin-bottom: 4px;
+    padding-right: 30px;
   }
+  .animation--1 {
+    animation: menu-appears 2s both;
+  }
+  .animation--2 {
+    animation: menu-appears 2s both 0.1s;
+  }
+  .animation--3 {
+    animation: menu-appears 2s both 0.2s;
+  }
+  .animation--4 {
+    animation: menu-appears 2s both 0.3s;
+  }
+
   .topnav .nav-icon.active {
     display: inline;
   }
