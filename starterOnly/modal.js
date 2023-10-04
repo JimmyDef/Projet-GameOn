@@ -120,9 +120,8 @@ const isLocationChecked = () => {
     }
     $formData.setAttribute("data-error-visible", "true");
   }
-  if (tournamentLocation !== undefined) {
-    return true;
-  }
+
+  return tournamentLocation !== undefined;
 };
 
 //-----------------------------------------------------
