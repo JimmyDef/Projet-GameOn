@@ -54,7 +54,6 @@ main {
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
-  /* background-color: white; */
 }
 #modal {
   display: none;
@@ -112,14 +111,15 @@ input {
   margin-bottom: 10px;
 }
 .formData[data-error]::after {
+  width: 100%;
   content: attr(data-error);
-  font-size: 0.7em;
+  font-size: 0.8em;
   color: #e54858;
   display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 5px;
+  margin-bottom: 15px;
   text-align: right;
-  line-height: 0.3;
+
   opacity: 0;
   transition: 0.3s;
 }
@@ -129,12 +129,7 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.5em;
-    color: red;
-} */
+
 fieldset {
   border: 0;
 }

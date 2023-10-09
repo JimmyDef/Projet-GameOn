@@ -125,6 +125,19 @@ const isLocationChecked = () => {
 };
 
 //-----------------------------------------------------
+// Function to check *Conditions* checkbox
+//-----------------------------------------------------
+
+const isCheckbox1Checked = () => {
+  const $formData = $form.checkbox1.closest("div.formData");
+  if ($form.checkbox1.checked) {
+    $formData.setAttribute("data-error-visible", "");
+    return true;
+  }
+  $formData.setAttribute("data-error-visible", "true");
+};
+
+//-----------------------------------------------------
 // AddEventListener listener after focus lost
 //-----------------------------------------------------
 $form.first.addEventListener("change", function () {
@@ -139,19 +152,6 @@ $form.email.addEventListener("change", function () {
 $form.quantity.addEventListener("change", function () {
   InputErrorHandler(this, tournamentRegEx);
 });
-
-//-----------------------------------------------------
-// Function to check *Conditions* checkbox
-//-----------------------------------------------------
-
-const isCheckbox1Checked = () => {
-  const $formData = $form.checkbox1.closest("div.formData");
-  if ($form.checkbox1.checked) {
-    $formData.setAttribute("data-error-visible", "");
-    return true;
-  }
-  $formData.setAttribute("data-error-visible", "true");
-};
 
 //-----------------------------------------------------
 // Submit verifications
