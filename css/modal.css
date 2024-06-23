@@ -61,9 +61,11 @@ main {
 #thanking {
   display: none;
 }
-
+.modal-open {
+  overflow: scroll;
+}
 .content {
-  margin: 5% auto;
+  margin: 4% auto;
   width: 100%;
   max-width: 536px;
   animation-name: modalopen;
@@ -105,7 +107,7 @@ input {
   width: 100%;
   border-radius: 8px;
   font-size: 20px;
-  height: 48px;
+  height: 44px;
 }
 .formData {
   margin-bottom: 10px;
@@ -117,9 +119,8 @@ input {
   color: #e54858;
   display: block;
   margin-top: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: right;
-
   opacity: 0;
   transition: 0.3s;
 }

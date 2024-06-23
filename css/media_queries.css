@@ -158,4 +158,8 @@
     margin-top: 0px;
     text-align: center;
   }
+  .formData[data-error]::after {
+    margin-bottom: 0px;
+    font-size: 0.7em;
+  }
 }

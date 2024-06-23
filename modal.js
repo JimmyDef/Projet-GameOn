@@ -10,6 +10,7 @@ const $form = document.querySelector("form");
 const $formData = document.querySelectorAll(".formData");
 const $radioButtons = document.querySelectorAll("input[name='location']");
 const $submitBtn = document.getElementById("submitBtn");
+const $body = document.querySelector("body");
 
 //-----------------------------------------------------
 // Display burger menu
@@ -28,9 +29,11 @@ $burgerIcons.forEach((elt) => {
 
 const launchModal = () => {
   $modal.style.display = "block";
+  $body.style.overflow = "hidden";
 };
 const closeModale = () => {
   $modal.style.display = "none";
+  $body.style.overflow = "scroll";
 };
 
 $modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
